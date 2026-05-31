@@ -1,0 +1,19 @@
+<h1><%= @event.title %></h1>
+
+<p>Location: <%= @event.location %></p>
+<p>Date: <%= @event.date %></p>
+<p>Creator: <%= @event.creator.email %></p>
+
+<% if user_signed_in? %>
+  <%= button_to "Attend this event",
+      event_attendances_path(@event),
+      method: :post %>
+<% end %>
+
+<h2>Attendees</h2>
+
+<ul>
+  <% @event.attendees.each do |attendee| %>
+    <li><%= attendee.email %></li>
+  <% end %>
+</ul>
